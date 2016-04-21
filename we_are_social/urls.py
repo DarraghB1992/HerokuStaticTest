@@ -25,6 +25,8 @@ from threads import views as forum_views
 from polls import api_views
 from threads import api_views as thread_api_views
 
+from django.contrib.staticfiles import views as static_view
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.get_index),
@@ -71,5 +73,6 @@ urlpatterns = [
     url(r'^post/update/(?P<pk>[\d+]+)/$', thread_api_views.PostUpdateView.as_view(),
         name="update-poll"),
     url(r'post/delete/(?P<pk>[\d]+)/$', thread_api_views.PostDeleteView.as_view(),
-        name='delete-poll')
+        name='delete-poll'),
+    url(r'^staticfiles/(?P<path>.*)$', static_view.serve),
 ]
